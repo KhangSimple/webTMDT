@@ -100,6 +100,9 @@ th {
 #menu a {
     color: rgb(84,84,84);
 }
+#menu a:hover {
+    color:#f78da7;
+}
 
 .dropdown {
     position: relative;
@@ -145,6 +148,69 @@ th {
     display: block;
 }
 
-.dropdown:hover a {
-    color: blue; /* Màu chữ khi hover */
+.dropdown a:hover {
+    color: #f78da7;
+}
+
+.filter-component {
+    border-radius: 5px;
+    border: 2px solid #e8e8e8;
+    margin-bottom: 20px;
+}
+
+.filter-component .header {
+    background-color: rgb(242, 96, 147);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-left: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    align-items: center;
+}
+.filter-component .filter-content {
+    margin-top: 5px;
+}
+
+.filter-component .filter-content .filter-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 0px 5px 10px;
+}
+
+.filter-component .filter-content .filter-items:hover .value{
+    color: #f78da7;
+}
+
+.filter-component .filter-content .filter-items .value{
+    flex:0.5;
+    text-decoration: none;
+    color: black;
+}
+
+.filter-component .filter-content .filter-items .quantity{
+    flex:0.5;
+    color: gray;
+    font-size: 12px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: none; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(253, 149, 171); 
+    border-radius: 10px;
 }
