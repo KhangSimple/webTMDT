@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        p {
+        .product-list p {
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+        .price p {
             margin: 0px;
             margin-bottom: 10px;
         }
