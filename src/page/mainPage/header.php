@@ -61,7 +61,7 @@
             </div>
         </div>
         <div id="menu">
-            <a href="##" class="title">
+            <a href="http://localhost/webTMDT/src/page/mainPage/home.php" class="title">
                 TRANG CHỦ
             </a>
             <div class="dropdown">
