@@ -18,9 +18,9 @@
                 <p style="font-size: 14px;margin: 0;color:hsla(0, 0%, 100%, .8)">truongnguyen@gmail.com</p>
                 <i class="fa-solid fa-phone" style="color:hsla(0, 0%, 100%, .8);margin-left: 20px;margin-right: 5px; font-size: 14px;"></i>
                 <p style="font-size: 14px;margin: 0;color:hsla(0, 0%, 100%, .8)">012.34.456.999</p>
-                <i class="fa-brands fa-facebook-f icon"></i>
-                <i class="fa-brands fa-instagram icon"></i>
-                <i class="fa-brands fa-youtube icon"></i>
+                <a href="https://www.facebook.com/PeachTruong.1503"><i class="fa-brands fa-facebook-f icon"></i></a>
+                <a href="https://www.facebook.com/PeachTruong.1503"><i class="fa-brands fa-instagram icon"></i></a>
+                <a href="https://www.facebook.com/PeachTruong.1503"><i class="fa-brands fa-youtube icon"></i></a>
             </div>
         </div>
         <div class="info-2">
@@ -65,18 +65,18 @@
                 TRANG CHỦ
             </a>
             <div class="dropdown">
-                <a href="##" >
+                <a href="##" class="dropbtn" onclick="queryData('son_moi')">
                     SON MÔI
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
                 <div class="dropdown-content">
-                  <a href="#">Son thỏi</a>
-                  <a href="#">Son kem</a>
+                  <a href="#" onclick="queryDetailType('son_thoi')">Son thỏi</a>
+                  <a href="#" onclick="queryDetailType('son_kem')">Son kem</a>
                   <a href="#">Son dưỡng</a>
                 </div>
             </div>
             <div class="dropdown">
-                <a href="##">
+                <a href="##" class="dropbtn">
                     Nước hoa
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
@@ -91,7 +91,7 @@
                 CHỐNG NẮNG
             </a>
             <div class="dropdown">
-                <a href="##">
+                <a href="##" class="dropbtn">
                     CHĂM SÓC MẶT
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
@@ -106,7 +106,7 @@
                 TRANG ĐIỂM MẮT
             </a>
             <div class="dropdown">
-                <a href="##">
+                <a href="##" class="dropbtn">
                     CHĂM SÓC DA
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
