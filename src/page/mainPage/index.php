@@ -8,10 +8,47 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .popup {
+            display: none; /* Ẩn popup mặc định */
+            position: fixed; /* Giữ popup cố định trên màn hình */
+            left: 75%;
+            width: 25%;
+            height:100%;
+            top: 0%;
+            /* transform: translate(-50%, -50%); */
+            /* border: 1px solid #ccc; */
+            /* padding: 20px; */
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0);
+            z-index: 1000; /* Đảm bảo popup nằm trên các phần tử khác */
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 75%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999; 
+        }
+
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body style="background-color: white;">
+<body id="hg_container" style="background-color: white;">
     <?php include 'header.php'; ?>
-    
+
+    <!-- <div id="overlay" class="overlay"></div> -->
+    <!-- <div id="popup" class="popup"> -->
+    <?php include 'cart.php'; ?>
+    <!-- </div> -->
     <div style="display: flex;flex-direction: row;margin: 20px 170px 0px 130px">
         <div id="sidebar" style="flex:0.25">
             <div class="filter-component">
@@ -24,20 +61,20 @@
                         <p class="quantity">(111)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Bbia</a>
+                        <a class="value" href="##" onclick="queryBrandData('Bbia')">Bbia</a>
                         <p class="quantity">(9)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Black Rouge</a>
+                        <a class="value" href="##" onclick="queryBrandData('black_rouge')">Black Rouge</a>
                         <p class="quantity">(111)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Chanel</a>
+                        <a class="value" href="##" onclick="queryBrandData('chanel')">Chanel</a>
                         <p class="quantity">(55)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Charlotte Tibury</a>
-                        <p class="quantity">(4)</p>
+                        <a class="value" href="##" onclick="queryBrandData('dỉor')">Dior</a>
+                        <p class="quantity">(20)</p>
                     </div>
                     <div class="filter-items" >
                         <a class="value" href="##">Mac</a>
@@ -86,28 +123,24 @@
                 </div>
                 <div class="filter-content" style="overflow-y: auto;height: 200px;">
                     <div class="filter-items" >
-                        <a class="value" href="##">Anh</a>
-                        <p class="quantity">(4)</p>
-                    </div>
-                    <div class="filter-items" >
                         <a class="value" href="##" onclick="queryOriginData('han_quoc')">Hàn quốc</a>
                         <p class="quantity">(255)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Italy</a>
+                        <a class="value" href="##" onclick="queryOriginData('phap')">Pháp</a>
+                        <p class="quantity">(290)</p>
+                    </div>
+                    <div class="filter-items" >
+                        <a class="value" href="##" onclick="queryOriginData('italy')">Italy</a>
                         <p class="quantity">(23)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Mỹ</a>
+                        <a class="value" href="##" onclick="queryOriginData('my')">Mỹ</a>
                         <p class="quantity">(134)</p>
                     </div>
                     <div class="filter-items" >
-                        <a class="value" href="##">Nhật bản</a>
+                        <a class="value" href="##" onclick="queryOriginData('nhat_ban')">Nhật bản</a>
                         <p class="quantity">(4)</p>
-                    </div>
-                    <div class="filter-items" >
-                        <a class="value" href="##">Pháp</a>
-                        <p class="quantity">(290)</p>
                     </div>
                 </div>
             </div>
@@ -187,34 +220,19 @@
             </div>
         </div>
         <div id="content">
-        <!-- <?php foreach ($result as $danhMuc): ?>
-            <div class="product">
-                <img src=<?php echo $danhMuc['img_url']; ?> class="img-product"/>
-                <div class="name">
-                    <a href="##"><?php echo $danhMuc['name']; ?></a>
-                </div>
-                <div class="price">
-                    <p class="old-price"><?php echo $danhMuc['old_price']; ?></p>
-                    <p class="new-price"><?php echo $danhMuc['new_price']; ?></p>
-                </div>
-                <div class="btn-buy">
-                    <a href="##">Mua ngay</a>
-                </div>
+        <!-- <div class="product">
+            <img src="https://kyo.vn/wp-content/uploads/2024/05/Son-Dior-Rouge-Dior-Satin-Lipstick-818-Be-Loved-1-1.png" class="img-product"/>
+            <div class="name">
+                <a href="##">Son Dior Rouge Dior Satin Lipstick 818 Be Loved – Màu Đỏ Rượu</a>
             </div>
-        <?php endforeach; ?> -->
-            <!-- <div class="product">
-                <img src="https://kyo.vn/wp-content/uploads/2024/05/Son-Dior-Rouge-Dior-Satin-Lipstick-818-Be-Loved-1-1.png" class="img-product"/>
-                <div class="name">
-                    <a href="##">Son Dior Rouge Dior Satin Lipstick 818 Be Loved – Màu Đỏ Rượu</a>
-                </div>
-                <div class="price">
-                    <p class="old-price">1.480.000 ₫</p>
-                    <p class="new-price">990.000 ₫</p>
-                </div>
-                <div class="btn-buy">
-                    <a href="##">Mua ngay</a>
-                </div>
-            </div> -->
+            <div class="price">
+                <p class="old-price">1.480.000 ₫</p>
+                <p class="new-price">990.000 ₫</p>
+            </div>
+            <div class="btn-buy">
+                <a href="##">Mua ngay</a>
+            </div>
+        </div> -->
             
         </div>
     </div>
@@ -224,6 +242,7 @@
         var currentDetailType = '';
 
         function queryData(category) {
+            // window.location.href = "http://localhost/webTMDT/src/page/mainPage/index.php";
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -280,6 +299,51 @@
             }
             xhttp.send();
         }
+        function openCart() {
+            document.addEventListener("DOMContentLoaded", function() {
+                var element = document.getElementById("cart");
+                element.style.display = "block";
+            });
+        }
+
+        function addProduct(product_id) {
+            console.log("?????");
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
+            xhttp.send();
+            popup.style.display = 'flex';
+            overlay.style.display = 'block';
+            hgContainer.style.overflow = 'hidden';
+            queryCartData()
+        }
+
+        var popup = document.getElementById('popup');
+        var overlay = document.getElementById('overlay');
+        var openPopupButton = document.getElementById('openPopup');
+        var closePopupButton = document.getElementById('closePopup');
+
+        var hgContainer = document.getElementById('hg_container')
+
+        openPopupButton.addEventListener('click', function() {
+            popup.style.display = 'flex';
+            overlay.style.display = 'block';
+            hgContainer.style.overflow = 'hidden';
+            queryCartData()
+        });
+
+        closePopupButton.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            hgContainer.style.overflow = 'auto';
+        });
+
+        // Đóng popup khi nhấn ra ngoài popup
+        overlay.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            hgContainer.style.overflow = 'auto';
+        });
+
     </script>
 </body>
 </html>

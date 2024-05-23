@@ -69,11 +69,42 @@
             cursor: pointer;
             background-color: rgb(190, 45, 102);
         }
+        .popup {
+            display: none; /* Ẩn popup mặc định */
+            position: fixed; /* Giữ popup cố định trên màn hình */
+            left: 75%;
+            width: 25%;
+            height:100%;
+            top: 0%;
+            /* transform: translate(-50%, -50%); */
+            /* border: 1px solid #ccc; */
+            /* padding: 20px; */
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0);
+            z-index: 1000; /* Đảm bảo popup nằm trên các phần tử khác */
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 75%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999; 
+        }
+
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body style="background-color: white;">
+<body id='hg_container' style="background-color: white;">
     <?php include '../mainPage/header.php'; ?>
-    
+    <?php include 'cart.php'; ?>
     <div style="display: flex;flex-direction: row;margin: 40px 170px 0px 130px; min-height: 410px; margin-bottom:40px">
         <div class="payment-form">
             <p style="font-size: 18px; font-weight: 600;">
@@ -112,22 +143,16 @@
                     <p><b>TẠM TÍNH</b></p>
                 </div>
             </div>
-            
-            <div style="display: flex; border-bottom: 1px solid #ECECEC;padding: 12px 0px;">
-                <div style="flex:0.8; color: gray;">
-                    <p>Son Dior Rouge Dior Satin Lipstick 766 Rose Harpers - Hồng Sen Ánh Đỏ  × 1</p>
+            <div id="payment_form_content">
+                <div style="display: flex; border-bottom: 1px solid #ECECEC;padding: 12px 0px;">
+                    <div style="flex:0.8; color: gray;">
+                        <p>Son Dior Rouge Dior Satin Lipstick 766 Rose Harpers - Hồng Sen Ánh Đỏ  × 1</p>
+                    </div>
+                    <div style="flex:0.2; text-align: right;align-items: center;">
+                        <p><b>990.000 ₫</b></p>
+                    </div>
                 </div>
-                <div style="flex:0.2; text-align: right;align-items: center;">
-                    <p><b>990.000 ₫</b></p>
-                </div>
-            </div>
-            <div style="display: flex; border-bottom: 1px solid #ECECEC;padding: 12px 0px;">
-                <div style="flex:0.8; color: gray;">
-                    <p>Son Dior Rouge Dior Satin Lipstick 766 Rose Harpers - Hồng Sen Ánh Đỏ  × 1</p>
-                </div>
-                <div style="flex:0.2; text-align: right;align-items: center;">
-                    <p><b>990.000 ₫</b></p>
-                </div>
+
             </div>
 
             <div style="display: flex; border-bottom: 1px solid #ECECEC; margin-top: 10px;font-size: 14px;">
@@ -171,5 +196,18 @@
         </div>
     </div>
     <?php include '../mainPage/footer.php'; ?>
+
+    <script src='index.js'></script>
+    <script>
+        var payment_form = 'test'
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("payment_form_content").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "query_cart.php?payment_form=" + payment_form, true);
+        xhttp.send();
+    </script>
 </body>
 </html>

@@ -4,6 +4,10 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+
+button {
+    font-family: "Roboto Condensed", sans-serif;;
+}
 .container {
     /* width: 80%; */
     margin: auto;

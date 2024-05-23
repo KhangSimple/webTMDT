@@ -12,6 +12,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
+function createLink($url, $onclick, $text) {
+    return '<a href="' . $url . '" onclick="' . $onclick . '">' . $text . '</a>';
+}
+
 
 if(isset($_GET['type'])) {
     $type = $_GET['type'];
@@ -35,6 +39,7 @@ if(isset($_GET['type'])) {
     // Bước 4: Hiển thị kết quả dưới dạng HTML
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+            $productID = $row["product_id"];
             echo "<div class='product'>";
             echo "<img src='" . $row["img_url"] . "' class='img-product'/>";
             echo "<div class='name'><a href='#'>" . $row["name"] . "</a></div>";
@@ -42,7 +47,9 @@ if(isset($_GET['type'])) {
             echo "<p class='old-price'>" . $row["old_price"] . " ₫</p>";
             echo "<p class='new-price'>" . $row["new_price"] . " ₫</p>";
             echo "</div>";
-            echo "<div class='btn-buy'><a href='#'>Mua ngay</a></div>";
+            echo "<div class='btn-buy'>";
+            echo createLink('#', 'addProduct(' . $productID . '); return false;', 'Mua ngay');
+            echo "</div>";
             echo "</div>";
         }
     } else {
@@ -71,6 +78,7 @@ else if(isset($_GET['detail_type'])) {
     // Bước 4: Hiển thị kết quả dưới dạng HTML
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+            $productID = $row["product_id"];
             echo "<div class='product'>";
             echo "<img src='" . $row["img_url"] . "' class='img-product'/>";
             echo "<div class='name'><a href='#'>" . $row["name"] . "</a></div>";
@@ -78,7 +86,9 @@ else if(isset($_GET['detail_type'])) {
             echo "<p class='old-price'>" . $row["old_price"] . " ₫</p>";
             echo "<p class='new-price'>" . $row["new_price"] . " ₫</p>";
             echo "</div>";
-            echo "<div class='btn-buy'><a href='#'>Mua ngay</a></div>";
+            echo "<div class='btn-buy'>";
+            echo createLink('#', 'addProduct(' . $productID . '); return false;', 'Mua ngay');
+            echo "</div>";
             echo "</div>";
         }
     } else {

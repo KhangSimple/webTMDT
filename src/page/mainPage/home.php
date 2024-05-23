@@ -112,11 +112,43 @@
         font-size: 11px
       }
     }
+    .popup {
+      display: none; /* Ẩn popup mặc định */
+      position: fixed; /* Giữ popup cố định trên màn hình */
+      left: 75%;
+      width: 25%;
+      height:100%;
+      top: 0%;
+      /* transform: translate(-50%, -50%); */
+      /* border: 1px solid #ccc; */
+      /* padding: 20px; */
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0);
+      z-index: 1000; /* Đảm bảo popup nằm trên các phần tử khác */
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 75%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999; 
+    }
+
+    .close {
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+    }
   </style>
 </head>
 
-<body style="background-color: white;">
+<body id="hg_container" style="background-color: white;">
   <?php include 'header.php'; ?>
+  <?php include 'cart.php'; ?>
   <div class="slideshow-container">
     <!-- Slide 1 -->
     <div class="mySlides fade">
@@ -180,6 +212,7 @@
     autoSlides();
 
   </script>
+  <script src='index.js'></script>
 </body>
 
 </html>

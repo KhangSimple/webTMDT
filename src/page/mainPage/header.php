@@ -25,7 +25,7 @@
         </div>
         <div class="info-2">
             <img src="logo.png" alt="Ảnh" style="width: 80px;height: 80px">
-            <div style="flex:0.9;display: flex; justify-content: space-evenly">
+            <div style="flex:0.9;display: flex; justify-content: space-evenly;align-items:center">
                 <div class="info-2-component">
                     <img src="../../asset/images/fb-icon.png" class="info-2-icon"/>
                     <div>
@@ -56,7 +56,7 @@
                 </div>
                 <div style="text-align: right">
                     <i class="fa-solid fa-magnifying-glass" style="color: rgb(238, 56, 128);font-size: 25px;"></i>
-                    <i class="fa-solid fa-cart-shopping" style="color: rgb(238, 56, 128);font-size: 25px;margin-left: 10px;"></i>
+                    <a onclick="openCart()" href="##" id="openPopup"><i class="fa-solid fa-cart-shopping" style="color: rgb(238, 56, 128);font-size: 25px;margin-left: 10px;"></i></a>
                 </div>
             </div>
         </div>
@@ -65,14 +65,14 @@
                 TRANG CHỦ
             </a>
             <div class="dropdown">
-                <a href="##" class="dropbtn" onclick="queryData('son_moi')">
+                <a href="#" class="dropbtn" onclick="queryData('son_moi')">
                     SON MÔI
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
                 <div class="dropdown-content">
                   <a href="#" onclick="queryDetailType('son_thoi')">Son thỏi</a>
                   <a href="#" onclick="queryDetailType('son_kem')">Son kem</a>
-                  <a href="#">Son dưỡng</a>
+                  <a href="#" onclick="queryDetailType('son_duong')">Son dưỡng</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -137,5 +137,7 @@
             </div>
         </div>
     </header>
+    <script>
+    </script>
 </body>
 </html>
