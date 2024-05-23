@@ -34,7 +34,7 @@ else if(isset($_GET['delete_product'])) {
     $result = $conn->query($sql);
 }
 else if(isset($_GET['total_price'])) {
-    $sql = "select sum(product.new_price_int) as total_price from cart join product on cart.product_id = product.product_id";
+    $sql = "select sum(product.new_price_int * cart.quantity) as total_price from cart join product on cart.product_id = product.product_id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -46,8 +46,13 @@ else if(isset($_GET['total_price'])) {
     }
 }
 else if(isset($_GET['add_quantity'])) {
-    $product_id = $_GET['product_id'];
+    $product_id = $_GET['add_quantity'];
     $sql = "update cart set quantity = quantity + 1 where product_id = '$product_id'";
+    $result = $conn->query($sql);
+}
+else if(isset($_GET['minus_quantity'])) {
+    $product_id = $_GET['minus_quantity'];
+    $sql = "update cart set quantity = quantity - 1 where product_id = '$product_id'";
     $result = $conn->query($sql);
 }
 else if(isset($_GET['pre_payment'])) {
@@ -66,9 +71,9 @@ else if(isset($_GET['pre_payment'])) {
             echo "        <p><b>" . $row["new_price"] . "</b></p>";
             echo "    </div>";
             echo "    <div class='product-quantity' style='flex:0.15;text-align: center;'>";
-            echo "        <i class='fa-solid fa-plus icon-payment' style='color: aquamarine; font-size: 17px;'></i>";
+            echo createLink('#', 'addQuantity(' . $productID . '); return false;', "<i class='fa-solid fa-plus icon-payment' style='color: aquamarine; font-size: 17px;'></i>");
             echo "        <p style='margin: 0;'>" . $row["quantity"] . "</p>";
-            echo "        <i class='fa-solid fa-minus icon-payment' style='color: tomato; font-size: 17px;'></i>";
+            echo createLink('#', 'minusQuantity(' . $productID . '); return false;', "<i class='fa-solid fa-minus icon-payment' style='color: tomato; font-size: 17px;'></i>");
             echo "    </div>";
             echo "    <div class='product-total-price' style='flex:0.12; text-align: right;'>";
             echo "        <p><b>" . number_format($row["new_price_int"] * $row["quantity"], 0, ',', '.') . " ₫</b></p>";

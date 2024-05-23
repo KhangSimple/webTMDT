@@ -165,3 +165,15 @@ function addQuantity(product_id){
     xhttp.send();
     window.location.reload()
 }
+
+function minusQuantity(product_id){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Add quantity successfully");
+        }
+    };
+    xhttp.open("GET", "query_cart.php?minus_quantity=" + product_id, true);
+    xhttp.send();
+    window.location.reload()
+}
