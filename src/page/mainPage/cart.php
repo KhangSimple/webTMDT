@@ -95,10 +95,10 @@
         <div style="flex:0.2;background-color: white;text-align: center;">
             <div style="display: flex;border-bottom: 2px solid #ECECEC;margin: 15px 30px;">
                 <div style="flex:0.5; margin-bottom: 10px;">
-                    <p style="font-size: 18px;margin: 0px;text-align: left;"><b>Tổng số phụ:</b></p>
+                    <p style="font-size: 18px;margin: 0px;text-align: left;"><b>Tổng số tiền:</b></p>
                 </div>
-                <div style="flex:0.5; margin-bottom: 10px;">
-                    <p style="font-size: 18px;margin: 0px;text-align: right;"><b>1.980.000 ₫</b></p>
+                <div class='total_price' style="flex:0.5; margin-bottom: 10px;">
+                    <!-- <p style="font-size: 18px;margin: 0px;text-align: right;"><b>1.980.000 ₫</b></p> -->
                 </div>
             </div>
             <div class="btn" style="margin: 15px 30px;">
@@ -114,6 +114,7 @@
 
     <script>
         function queryCartData() {
+            getTotalPrice('font-size: 18px;margin: 0px;text-align: right;')
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {

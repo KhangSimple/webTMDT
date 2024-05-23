@@ -12,9 +12,42 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
+
+function createLink($url, $onclick, $text) {
+    return '<a href="' . $url . '" onclick="' . $onclick . '">' . $text . '</a>';
+}
+
+// function deleteProduct($product_id) {
+//     $sql = "DELETE FROM cart where product_id = '$product_id'";
+//     $result = $conn->query($sql);
+// }
+
+
 if(isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
     $sql = "INSERT INTO cart (product_id) values ('$product_id')";
+    $result = $conn->query($sql);
+}
+else if(isset($_GET['delete_product'])) {
+    $product_id = $_GET['delete_product'];
+    $sql = "DELETE FROM cart where product_id = '$product_id'";
+    $result = $conn->query($sql);
+}
+else if(isset($_GET['total_price'])) {
+    $sql = "select sum(product.new_price_int) as total_price from cart join product on cart.product_id = product.product_id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $totalPrice = $row["total_price"];
+            echo "<p style='font-size: 18px;margin: 0px;text-align: right;'><b>" . number_format($row["total_price"], 0, ',', '.') . " ₫</b></p>";
+        }
+    } else {
+        echo "Lỗi.";
+    }
+}
+else if(isset($_GET['add_quantity'])) {
+    $product_id = $_GET['product_id'];
+    $sql = "update cart set quantity = quantity + 1 where product_id = '$product_id'";
     $result = $conn->query($sql);
 }
 else if(isset($_GET['pre_payment'])) {
@@ -22,9 +55,10 @@ else if(isset($_GET['pre_payment'])) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+            $productID = $row["product_id"];
             echo "<div class='product' style='display: flex; padding: 20px 0px; align-items: center; border-bottom: 2px solid #F5F5F5;'>";
             echo "    <div class='product-name' style='flex:0.63;display: flex; align-items: center'>";
-            echo "        <i class='fa-solid fa-xmark icon-payment' style='color: gray; margin-right: 15px;'></i>";
+            echo createLink('#', 'deleteProduct(' . $productID . '); return false;', "<i class='fa-solid fa-xmark icon-payment' style='color: gray; margin-right: 15px;'></i>");
             echo "        <img src='" . $row["img_url"] . "' style='width: 80px;height: 80px;'/>";
             echo "        <p>" . $row["name"] . "</p>";
             echo "    </div>";
@@ -68,6 +102,7 @@ else{
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+            $productID = $row["product_id"];
             echo "<div class='cart-product' style='display: flex; flex-direction: row;align-items: center;'>";
             echo "<div class='cart-img-product' style='margin-left: 30px;align-items: center;'>";
             echo "<img src='" . $row["img_url"] . "' style='width: 60px; height: 60px;'/>";
@@ -75,7 +110,7 @@ else{
             echo "<div class='cart-name-product' style='max-width: 180px;text-align: left;margin-left: 20px;'>";
             echo "<p>" . $row["name"] . "<br>" . $row["quantity"] . " × " . $row["new_price"] . " ₫</p>";
             echo "</div>";
-            echo "<i class='fa-solid fa-xmark cart-icon-delete'></i>";
+            echo createLink('#', 'deleteProduct(' . $productID . '); return false;', "<i class='fa-solid fa-xmark cart-icon-delete'></i>");
             echo "</div>";
         }
     } else {

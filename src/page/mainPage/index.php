@@ -311,9 +311,14 @@
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
             xhttp.send();
-            popup.style.display = 'flex';
-            overlay.style.display = 'block';
-            hgContainer.style.overflow = 'hidden';
+            // popup.style.display = 'flex';
+            // overlay.style.display = 'block';
+            // hgContainer.style.overflow = 'hidden';
+            setTimeout(function(){
+                popup.style.display = 'flex';
+                overlay.style.display = 'block';
+                hgContainer.style.overflow = 'hidden';
+            }, 500)
             queryCartData()
         }
 

@@ -116,8 +116,7 @@
                 <div style="flex:0.5">
                     <p>Tạm tính</p>
                 </div>
-                <div style="flex:0.5; text-align: right;">
-                    <p><b>1.980.000 ₫</b></p>
+                <div class='total_price' style="flex:0.5;text-align: right;">
                 </div>
             </div>
             <div class="price-ship" style="display: flex;padding: 10px 0px; border-bottom: 2px solid #F5F5F5;">
@@ -132,9 +131,11 @@
                 <div style="flex:0.5">
                     <p>Tổng</p>
                 </div>
-                <div style="flex:0.5; text-align: right;">
-                    <p><b>1.980.000 ₫</b></p>
+                <div class='total_price' style="flex:0.5;text-align: right;">
                 </div>
+                <!-- <div style="flex:0.5; text-align: right;">
+                    <p><b>1.980.000 ₫</b></p>
+                </div> -->
             </div>
             <button class="btn-payment" onclick="toPaymentForm()">
                 <!-- <p style="">Tiến hành thanh toán</p> -->
@@ -145,6 +146,7 @@
     <?php include '../mainPage/footer.php'; ?>
 
     <script>
+        getTotalPrice('')
         var pre_payment = 'test'
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

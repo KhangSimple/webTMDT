@@ -98,6 +98,7 @@ function openCart() {
 }
 
 function queryCartData() {
+    getTotalPrice('font-size: 18px;margin: 0px;text-align: right;')
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -113,12 +114,54 @@ function addProduct(product_id) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
     xhttp.send();
-    popup.style.display = 'flex';
-    overlay.style.display = 'block';
-    hgContainer.style.overflow = 'hidden';
+    setTimeout(function(){
+        popup.style.display = 'flex';
+        overlay.style.display = 'block';
+        hgContainer.style.overflow = 'hidden';
+    }, 500)
     queryCartData()
+}
+
+function deleteProduct(product_id) {
+    console.log("?????");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "query_cart.php?delete_product=" + product_id, true);
+    xhttp.send();
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    hgContainer.style.overflow = 'auto';
+    window.location.reload()
+    queryCartData()
+}
+
+function getTotalPrice(style) {
+    console.log("total_price");
+    var price = 'test';
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var elements = document.getElementsByClassName("total_price")
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].innerHTML = this.responseText;
+            }
+        }
+    };
+    xhttp.open("GET", "query_cart.php?total_price=" + price + "$style=" + style, true);
+    xhttp.send();
 }
 
 function toPaymentForm() {
     window.location.href = 'http://localhost/webTMDT/src/page/mainPage/payment_form.php'
+}
+
+function addQuantity(product_id){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Add quantity successfully");
+        }
+    };
+    xhttp.open("GET", "query_cart.php?add_quantity=" + product_id, true);
+    xhttp.send();
+    window.location.reload()
 }

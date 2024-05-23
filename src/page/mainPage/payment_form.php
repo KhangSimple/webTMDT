@@ -54,7 +54,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        .btn-order {
+        .btn-dat-hang {
             width: 100%;
             background-color: rgb(238, 56, 128);
             border: none;
@@ -159,8 +159,10 @@
                 <div style="flex:0.8;">
                     <p><b>Tạm tính</b></p>
                 </div>
-                <div style="flex:0.2; text-align: right;">
+                <!-- <div style="flex:0.2; text-align: right;">
                     <p><b>1.980.000 ₫</b></p>
+                </div> -->
+                <div class='total_price' style="flex:0.2;text-align: right;">
                 </div>
             </div>
             <div style="display: flex; border-bottom: 1px solid #ECECEC; margin-top: 10px;font-size: 14px; color: gray;">
@@ -175,15 +177,17 @@
                 <div style="flex:0.8;">
                     <p><b>Tổng</b></p>
                 </div>
-                <div style="flex:0.2; text-align: right;">
+                <!-- <div style="flex:0.2; text-align: right;">
                     <p><b>1.980.000 ₫</b></p>
+                </div> -->
+                <div class='total_price' style="flex:0.2;text-align: right;">
                 </div>
             </div>
             <div style="display:flex; flex-direction: row;font-size: 15px; text-align: left; align-items: center; padding: 0;">
                 <input type="radio" id="payment-type" name="fav_language" value="1" style="scale: 0.4;flex: 0.2;padding: 0px;" checked>
                 <label for="payment-type"><b>Chuyển khoản ngân hàng</b></label>
             </div>
-            <button class="btn-order">
+            <button class="btn-dat-hang">
                 ĐẶT HÀNG
             </button>
             <div style="margin-top: 30px;">
@@ -199,6 +203,7 @@
 
     <script src='index.js'></script>
     <script>
+        getTotalPrice('')
         var payment_form = 'test'
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
