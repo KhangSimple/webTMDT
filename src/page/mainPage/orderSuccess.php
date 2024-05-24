@@ -52,12 +52,15 @@
         <div style="background-color: white; width: 70%; height: 80%;display:flex; justify-content:center; align-items:center; flex-direction: column;">
             <i class="fa-regular fa-circle-check" style="color:rgb(242, 96, 147); font-size: 60px;"></i>
             <p style="font-size: 30px;margin-bottom: 40px;"><b>Đặt hàng thành công</b></p>
-            <p style="font-size: 18px;margin-bottom: 0px;">Mã đặt hàng của bạn là: <p style="font-size: 20px;color: rgb(242, 78, 135);">123456</p></p>
+            <p style="font-size: 18px;margin-bottom: 0px;">Mã đặt hàng của bạn là: <p id="product_list_order_id" style="font-size: 20px;color: rgb(242, 78, 135);"></p></p>
             <p style="margin-top: 5px;">Theo dõi đơn hàng của bạn bằng cách tra cứu trạng thái của đơn hàng</p>
         </div>
     </div>
     <?php include 'footer.php'; ?>
     <script>
+        var product_list_order_id = localStorage.getItem('product_list_order_id');
+        document.getElementById('product_list_order_id').innerText = product_list_order_id;
+
         var currentCategory = '';
         var currentDetailType = '';
 

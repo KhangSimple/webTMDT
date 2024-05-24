@@ -31,21 +31,12 @@ overlay.addEventListener('click', function() {
 var search_popup = document.getElementById('search-popup');
 var search_overlay = document.getElementById('search-overlay');
 var search_openPopupButton = document.getElementById('search-openPopup');
-var search_closePopupButton = document.getElementById('search-closePopup');
-
-// var hgContainer = document.getElementById('search-hg_container')
 
 search_openPopupButton.addEventListener('click', function() {
     search_popup.style.display = 'flex';
     search_overlay.style.display = 'block';
     // hgContainer.style.overflow = 'hidden';
     // queryCartData()
-});
-
-search_closePopupButton.addEventListener('click', function() {
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-    hgContainer.style.overflow = 'auto';
 });
 
 // Đóng popup khi nhấn ra ngoài popup
@@ -221,6 +212,35 @@ function minusQuantity(product_id){
     window.location.reload()
 }
 
+function generateRandomString(length) {
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 function orderProduct(){
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var email = document.getElementById('email').value;
+    var address = document.getElementById('address-payment').value;
+    var note = document.getElementById('note').value;
+    // if(name == '' || phone == '' || email == '' || address == ''){
+    //     alert("Vui lòng điền đầy đủ thông tin")
+    //     return;
+    // }
+    var product_list_order_id = generateRandomString(6);
+    localStorage.setItem('product_list_order_id', product_list_order_id)
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         console.log("Add order successfully");
+    //     }
+    // };
+    // xhttp.open("GET", "query.php?order=" + 'order' + '&name=' + name + '&phone=' + phone + '&email=' + email + '&address=' + address + '&note=' + note + '&product_list_order_id=' + product_list_order_id, true);
+    // xhttp.send();
     window.location.href = "http://localhost/webTMDT/src/page/mainPage/orderSuccess.php"
 }
