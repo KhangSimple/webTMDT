@@ -96,7 +96,26 @@ else if(isset($_GET['detail_type'])) {
     }
 }
 else {
-    echo "Không có danh mục sản phẩm được chọn.";
+    $sql = "SELECT * FROM product";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $productID = $row["product_id"];
+            echo "<div class='product'>";
+            echo "<img src='" . $row["img_url"] . "' class='img-product'/>";
+            echo "<div class='name'><a href='#'>" . $row["name"] . "</a></div>";
+            echo "<div class='price'>";
+            echo "<p class='old-price'>" . $row["old_price"] . " ₫</p>";
+            echo "<p class='new-price'>" . $row["new_price"] . " ₫</p>";
+            echo "</div>";
+            echo "<div class='btn-buy'>";
+            echo createLink('#', 'addProduct(' . $productID . '); return false;', 'Mua ngay');
+            echo "</div>";
+            echo "</div>";
+        }
+    } else {
+        echo "Không có sản phẩm trong danh mục này.";
+    }
 }
 
 // Bước 5: Đóng kết nối

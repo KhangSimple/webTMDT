@@ -8,8 +8,81 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .search-popup {
+            display: none; /* Ẩn popup mặc định */
+            position: fixed; /* Giữ popup cố định trên màn hình */
+            left: 32%;
+            width: 36%;
+            height:6%;
+            top: 47%;
+            /* transform: translate(-50%, -50%); */
+            border: 1px solid #ccc;
+            /* padding: 15px; */
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0);
+            z-index: 1000;
+            align-items: center;
+            border-radius: 25px;
+        }
+
+        .search-overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999; 
+        }
+
+        .search-close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .input-search {
+            flex: 0.98;
+            padding: 5px;
+            padding-left: 15px;
+            height: 80%;
+            font-size: 18px;
+            border: none;
+            align-items: center;
+            border-radius: 25px;
+            font-weight:500;
+        }
+        .input-search:hover {
+            outline: none;
+            border-color: transparent;
+        }
+        .input-search:focus {
+            outline: none; /* Loại bỏ outline mặc định */
+            border-color: transparent; /* Ẩn border khi focus */
+        }   
+        .comfirm-search {
+            border: none;
+            background-color: transparent;
+            justify-content: end;
+        }
+        .comfirm-search:hover {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body style="background-color: white;">
+    <div id="search-overlay" class="search-overlay">
+    </div>
+    <div id="search-popup" class="search-popup">
+        <form style="width: 100%;height: 100%;display: flex;">
+            <input class="input-search" type="text" placeholder="Điền mã đơn hàng của bạn"/>
+            <button class="comfirm-search"><i class="fa-brands fa-searchengin" style="font-size: 25px;"></i></button>
+        </form>
+    </div>
+
+    </div>
     <header>
         <div class="info">
             <p style="padding:0;font-size: 15px;flex:0.7">Truong - Shop Mỹ Phẩm, Son Môi, Nước Hoa Chính Hãng</p>
@@ -55,7 +128,7 @@
                     </div>
                 </div>
                 <div style="text-align: right">
-                    <i class="fa-solid fa-magnifying-glass" style="color: rgb(238, 56, 128);font-size: 25px;"></i>
+                    <a href="#" id="search-openPopup"><i class="fa-solid fa-magnifying-glass" style="color: rgb(238, 56, 128);font-size: 25px;"></i></a>
                     <a onclick="openCart()" href="##" id="openPopup"><i class="fa-solid fa-cart-shopping" style="color: rgb(238, 56, 128);font-size: 25px;margin-left: 10px;"></i></a>
                 </div>
             </div>
@@ -76,50 +149,57 @@
                 </div>
             </div>
             <div class="dropdown">
-                <a href="##" class="dropbtn">
+                <a href="##" class="dropbtn" onclick="queryData('nuoc_hoa')">
                     Nước hoa
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
                 <div class="dropdown-content">
-                  <a href="#">Nước hoa nữ</a>
-                  <a href="#">Nước hoa nam</a>
-                  <a href="#">Nước hoa Unisex</a>
-                  <a href="#">Body Mist</a>
+                  <a href="#" onclick="queryDetailType('nuoc_hoa_nu')">Nước hoa nữ</a>
+                  <a href="#" onclick="queryDetailType('nuoc_hoa_nam')">Nước hoa nam</a>
+                  <a href="#" onclick="queryDetailType('nuoc_hoa_unisex')">Nước hoa Unisex</a>
+                  <a href="#" onclick="queryDetailType('body_mist')">Body Mist</a>
                 </div>
             </div>
-            <a href="##">
+            <a href="##" onclick="queryData('chong_nang')">
                 CHỐNG NẮNG
             </a>
             <div class="dropdown">
-                <a href="##" class="dropbtn">
-                    CHĂM SÓC MẶT
+                <a href="##" class="dropbtn" onclick="queryData('trang_diem_mat')">
+                    TRANG ĐIỂM MẶT
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
                 <div class="dropdown-content">
-                  <a href="#">Kem nền, kem lót</a>
-                  <a href="#">Cọ tán</a>
-                  <a href="#">Má hồng</a>
-                  <a href="#">Tạo khối</a>
+                  <a href="#" onclick="queryDetailType('kem_nen')">Kem nền, kem lót</a>
+                  <a href="#" onclick="queryDetailType('ma_hong')">Má hồng</a>
                 </div>
             </div>
-            <a href="##">
-                TRANG ĐIỂM MẮT
-            </a>
             <div class="dropdown">
-                <a href="##" class="dropbtn">
+                <a href="##" class="dropbtn" onclick="queryData('trang_diem_eye')">
+                    TRANG ĐIỂM MẮT
+                    <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
+                </a>
+                <div class="dropdown-content">
+                  <a href="#" onclick="queryDetailType('phan_mat')">Phấn mắt</a>
+                  <a href="#" onclick="queryDetailType('bam_mi')">Bấm mí</a>
+                  <a href="#" onclick="queryDetailType('ke_mat')">Kẻ mắt</a>
+                  <a href="#" onclick="queryDetailType('mascara')">mascara</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="##" class="dropbtn" onclick="queryData('cham_soc_da')">
                     CHĂM SÓC DA
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
                 </a>
                 <div class="dropdown-content">
-                  <a href="#">Mặt nạ</a>
-                  <a href="#">Tẩy trang</a>
-                  <a href="#">Xịt khoáng</a>
+                  <a href="#" onclick="queryDetailType('mat_na')">Mặt nạ</a>
+                  <a href="#" onclick="queryDetailType('dau_tay_trang')">Tẩy trang</a>
+                  <a href="#" onclick="queryDetailType('xit_khoang')">Xịt khoáng</a>
                 </div>
             </div>
-            <a href="##">
+            <a href="##" onclick="queryData('cham_soc_toc')">
                 CHĂM SÓC TÓC
             </a>
-            <a href="##">
+            <a href="##" onclick="queryAllData()">
                 SHOP ALL
             </a>
             <div class="dropdown">
@@ -137,7 +217,22 @@
             </div>
         </div>
     </header>
-    <script>
+    <script>    
+        var search_popup = document.getElementById('search-popup');
+        var search_overlay = document.getElementById('search-overlay');
+        var search_openPopupButton = document.getElementById('search-openPopup');
+
+        // var hgContainer = document.getElementById('search-hg_container')
+
+        search_openPopupButton.addEventListener('click', function() {
+            search_popup.style.display = 'flex';
+            search_overlay.style.display = 'block';
+        });
+
+        search_overlay.addEventListener('click', function() {
+            search_popup.style.display = 'none';
+            search_overlay.style.display = 'none';
+        });
     </script>
 </body>
 </html>

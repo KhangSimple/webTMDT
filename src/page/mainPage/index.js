@@ -28,6 +28,49 @@ overlay.addEventListener('click', function() {
     hgContainer.style.overflow = 'auto';
 });
 
+var search_popup = document.getElementById('search-popup');
+var search_overlay = document.getElementById('search-overlay');
+var search_openPopupButton = document.getElementById('search-openPopup');
+var search_closePopupButton = document.getElementById('search-closePopup');
+
+// var hgContainer = document.getElementById('search-hg_container')
+
+search_openPopupButton.addEventListener('click', function() {
+    search_popup.style.display = 'flex';
+    search_overlay.style.display = 'block';
+    // hgContainer.style.overflow = 'hidden';
+    // queryCartData()
+});
+
+search_closePopupButton.addEventListener('click', function() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    hgContainer.style.overflow = 'auto';
+});
+
+// Đóng popup khi nhấn ra ngoài popup
+overlay.addEventListener('click', function() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    hgContainer.style.overflow = 'auto';
+});
+
+function queryAllData() {
+    setTimeout(function _(){
+        console.log('???');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("content").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "query.php", true);
+        xhttp.send();
+        }
+    , 1000)    
+    // window.location.href = "http://localhost/webTMDT/src/page/mainPage/index.php";
+}
+
 function queryData(category) {
     setTimeout(function _(){
         console.log('???');
@@ -176,4 +219,8 @@ function minusQuantity(product_id){
     xhttp.open("GET", "query_cart.php?minus_quantity=" + product_id, true);
     xhttp.send();
     window.location.reload()
+}
+
+function orderProduct(){
+    window.location.href = "http://localhost/webTMDT/src/page/mainPage/orderSuccess.php"
 }

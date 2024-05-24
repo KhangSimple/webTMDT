@@ -49,6 +49,17 @@
             height: 35px;
             border: 1px solid sandybrown;
             margin-bottom: 10px;
+            font-size: 15px;
+            padding-left: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 35px;
+            border: 1px solid sandybrown;
+            margin-bottom: 10px;
+            font-size: 15px;
+            padding-left: 10px;
+            padding-top: 15px;
         }
         label {
             display: block;
@@ -65,7 +76,7 @@
             padding: 10px;
             margin-top: 30px;
         }
-        .btn-order:hover {
+        .btn-dat-hang:hover {
             cursor: pointer;
             background-color: rgb(190, 45, 102);
         }
@@ -187,7 +198,7 @@
                 <input type="radio" id="payment-type" name="fav_language" value="1" style="scale: 0.4;flex: 0.2;padding: 0px;" checked>
                 <label for="payment-type"><b>Chuyển khoản ngân hàng</b></label>
             </div>
-            <button class="btn-dat-hang">
+            <button class="btn-dat-hang" onclick="orderProduct()">
                 ĐẶT HÀNG
             </button>
             <div style="margin-top: 30px;">
