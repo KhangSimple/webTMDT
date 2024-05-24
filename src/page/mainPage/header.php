@@ -70,6 +70,9 @@
         .comfirm-search:hover {
             cursor: pointer;
         }
+        input {
+            font-family: ;
+        }
     </style>
 </head>
 <body style="background-color: white;">

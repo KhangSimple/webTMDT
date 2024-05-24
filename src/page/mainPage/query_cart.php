@@ -113,7 +113,7 @@ else if(isset($_GET['order_info'])) {
 }
 else if(isset($_GET['order_buyer_info'])) {
     $product_list_order_id = $_GET['product_list_order_id'];
-    $sql = "SELECT *, (select sum(product.new_price_int) from product join product_list_order as plo on plo.product_id = product.product_id WHERE plo.product_list_order_id = '$product_list_order_id') as total_price FROM orders WHERE product_list_order_id = '$product_list_order_id'";
+    $sql = "SELECT *, (select sum(product.new_price_int * plo.quantity) from product join product_list_order as plo on plo.product_id = product.product_id WHERE plo.product_list_order_id = '$product_list_order_id') as total_price FROM orders WHERE product_list_order_id = '$product_list_order_id'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {

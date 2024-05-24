@@ -109,8 +109,8 @@ else if(isset($_GET['order'])) {
     $sql1 = "INSERT INTO product_list_order (product_list_order_id, product_id, quantity) select '$product_list_order_id' as product_list_order_id, product_id, quantity from cart";
     $result1 = $conn->query($sql1);
 
-    // $sql2 = "DELETE FROM cart";
-    // $result2 = $conn->query($sql2);
+    $sql2 = "DELETE FROM cart";
+    $result2 = $conn->query($sql2);
 }
 else {
     $sql = "SELECT * FROM product";
