@@ -76,10 +76,8 @@
     <div id="search-overlay" class="search-overlay">
     </div>
     <div id="search-popup" class="search-popup">
-        <form style="width: 100%;height: 100%;display: flex;">
-            <input class="input-search" type="text" placeholder="Điền mã đơn hàng của bạn"/>
-            <button class="comfirm-search"><i class="fa-brands fa-searchengin" style="font-size: 25px;"></i></button>
-        </form>
+        <input id="input-search" class="input-search" type="text" placeholder="Điền mã đơn hàng của bạn"/>
+        <button class="comfirm-search" onclick="openOrderInfo()"><i class="fa-brands fa-searchengin" style="font-size: 25px;"></i></button>
     </div>
 
     </div>
@@ -233,6 +231,14 @@
             search_popup.style.display = 'none';
             search_overlay.style.display = 'none';
         });
+        function openOrderInfo() {
+            var order_search_id = document.getElementById('input-search').value;
+            localStorage.setItem('order_search_id', order_search_id)
+            search_popup.style.display = 'none';
+            search_overlay.style.display = 'none';
+            window.location.href = "http://localhost/webTMDT/src/page/mainPage/search_order.php"
+        }
+
     </script>
 </body>
 </html>

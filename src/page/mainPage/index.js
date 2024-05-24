@@ -228,19 +228,19 @@ function orderProduct(){
     var email = document.getElementById('email').value;
     var address = document.getElementById('address-payment').value;
     var note = document.getElementById('note').value;
-    // if(name == '' || phone == '' || email == '' || address == ''){
-    //     alert("Vui lòng điền đầy đủ thông tin")
-    //     return;
-    // }
+    if(name == '' || phone == '' || email == '' || address == ''){
+        alert("Vui lòng điền đầy đủ thông tin")
+        return;
+    }
     var product_list_order_id = generateRandomString(6);
     localStorage.setItem('product_list_order_id', product_list_order_id)
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         console.log("Add order successfully");
-    //     }
-    // };
-    // xhttp.open("GET", "query.php?order=" + 'order' + '&name=' + name + '&phone=' + phone + '&email=' + email + '&address=' + address + '&note=' + note + '&product_list_order_id=' + product_list_order_id, true);
-    // xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Add order successfully");
+        }
+    };
+    xhttp.open("GET", "query.php?order=" + 'order' + '&name=' + name + '&phone=' + phone + '&email=' + email + '&address=' + address + '&note=' + note + '&product_list_order_id=' + product_list_order_id, true);
+    xhttp.send();
     window.location.href = "http://localhost/webTMDT/src/page/mainPage/orderSuccess.php"
 }

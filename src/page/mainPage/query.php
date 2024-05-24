@@ -103,12 +103,11 @@ else if(isset($_GET['order'])) {
     $note = $_GET['note'];
     $product_list_order_id = $_GET['product_list_order_id'];
 
-    // Bước 3: Truy vấn cơ sở dữ liệu dựa trên danh mục sản phẩm
     $sql = "INSERT INTO orders (buyer_name, buyer_phone, buyer_email, buyer_address,note, status, product_list_order_id) values ('$name', '$phone', '$email', '$address','$note', '0', '$product_list_order_id')";
     $result = $conn->query($sql);
 
-    // $sql1 = "INSERT INTO product_list_order (product_list_order_id, product_id, quantity) select '$product_list_order_id' as product_list_order_id, product_id, quantity from cart";
-    // $result1 = $conn->query($sql1);
+    $sql1 = "INSERT INTO product_list_order (product_list_order_id, product_id, quantity) select '$product_list_order_id' as product_list_order_id, product_id, quantity from cart";
+    $result1 = $conn->query($sql1);
 
     // $sql2 = "DELETE FROM cart";
     // $result2 = $conn->query($sql2);
