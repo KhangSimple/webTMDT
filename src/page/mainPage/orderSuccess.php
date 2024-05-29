@@ -128,21 +128,18 @@
             });
         }
 
-        function addProduct(product_id) {
-            console.log("?????");
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
-            xhttp.send();
-            // popup.style.display = 'flex';
-            // overlay.style.display = 'block';
-            // hgContainer.style.overflow = 'hidden';
-            setTimeout(function(){
-                popup.style.display = 'flex';
-                overlay.style.display = 'block';
-                hgContainer.style.overflow = 'hidden';
-            }, 500)
-            queryCartData()
-        }
+        // function addProduct(product_id) {
+        //     console.log("?????");
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
+        //     xhttp.send();
+        //     setTimeout(function(){
+        //         popup.style.display = 'flex';
+        //         overlay.style.display = 'block';
+        //         hgContainer.style.overflow = 'hidden';
+        //     }, 500)
+        //     queryCartData()
+        // }
 
         var popup = document.getElementById('popup');
         var overlay = document.getElementById('overlay');

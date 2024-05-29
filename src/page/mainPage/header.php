@@ -203,7 +203,7 @@
             <a href="##" onclick="queryAllData()">
                 SHOP ALL
             </a>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <a href="##" class="dropbtn">
                     TIN TỨC
                     <i class="fa-solid fa-caret-down" style="margin-left: 5px;"></i>
@@ -215,7 +215,7 @@
                   <a href="#">Quà tặng</a>
                   <a href="#">Tuyển dụng</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </header>
     <script>    

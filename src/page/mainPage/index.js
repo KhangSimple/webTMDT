@@ -146,14 +146,14 @@ function queryCartData() {
 function addProduct(product_id) {
     console.log("?????");
     var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var cart = document.getElementById('openPopup');
+            cart.click()
+        }
+    };
     xhttp.open("GET", "query_cart.php?product_id=" + product_id, true);
     xhttp.send();
-    setTimeout(function(){
-        popup.style.display = 'flex';
-        overlay.style.display = 'block';
-        hgContainer.style.overflow = 'hidden';
-    }, 500)
-    queryCartData()
 }
 
 function deleteProduct(product_id) {
